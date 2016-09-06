@@ -2,20 +2,7 @@
 function bitFlipsNeeded(int1, int2) {
     if (int1 === int2) return 0
 
-    const bin1Temp = int1.toString(2).split('')
-    const bin2Temp = int2.toString(2).split('')
-
-    const bin1 = bin1Temp.length > bin2Temp.length ? bin1Temp : bin2Temp
-    const bin2 = bin1Temp.length > bin2Temp.length ? bin2Temp : bin1Temp
-
-    // pad shorter one if necessary
-    while (bin2.length !== bin1.length) {
-        bin2.unshift('0')
-    }
-
-    return bin1.reduce((previous, current, index) => {
-        return (current !== bin2[index]) ? parseInt(previous) + 1 : parseInt(previous)
-    }, 0)
+    return (int1 ^ int2).toString(2).match(/1/g).length;
 }
 
 // TESTS
